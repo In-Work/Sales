@@ -1,0 +1,91 @@
+﻿<Page x:Class="Sales.Pages.TransferPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sales.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Список перемещений" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Padding="2" ToolTip="Добавить" x:Name="MenuAdd" Click="MenuAdd_Click">
+                <MenuItem.Header>
+                    <Image MaxHeight="20" Source="pack://siteoforigin:,,,/Resources/plus.png" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Padding="2" ToolTip="Изменить" x:Name="MenuEdit" Click="MenuEdit_Click">
+                <MenuItem.Header>
+                    <Image MaxHeight="20" Source="pack://siteoforigin:,,,/Resources/edit.png" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Padding="2" ToolTip="Удалить" x:Name="MenuDelete" Click="MenuDelete_Click">
+                <MenuItem.Header>
+                    <Image MaxHeight="20" Source="pack://siteoforigin:,,,/Resources/minus.png" />
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Padding="2" ToolTip="Фильтр" x:Name="MenuFilter" Click="MenuFilter_Click">
+                <MenuItem.Header>
+                    <Image MaxHeight="20" Source="pack://siteoforigin:,,,/Resources/filter.png" />
+                </MenuItem.Header>
+            </MenuItem>
+        </Menu>
+        <DockPanel Grid.Row="1" LastChildFill="True">
+            <Grid DockPanel.Dock="Top" x:Name="FltrGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="0" Grid.Row="0" Text="Склад отправитель" VerticalAlignment="Center" Margin="2" />
+                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal" Margin="2">
+                    <CheckBox x:Name="FltrStoreAtCheck" VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <ComboBox x:Name="FltrStoreAt" DisplayMemberPath="Name" />
+                </StackPanel>
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Склад получатель" VerticalAlignment="Center" Margin="2" />
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="2">
+                    <CheckBox x:Name="FltrStoreToCheck" VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <ComboBox x:Name="FltrStoreTo" DisplayMemberPath="Name" />
+                </StackPanel>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Товар" VerticalAlignment="Center" Margin="2" />
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Margin="2">
+                    <CheckBox x:Name="FltrProductCheck" VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <ComboBox x:Name="FltrProduct" DisplayMemberPath="Name" />
+                </StackPanel>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Дата" VerticalAlignment="Center" Margin="2" />
+                <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Margin="2">
+                    <CheckBox x:Name="FltrDateCheck" VerticalAlignment="Center" Margin="0,0,4,0" />
+                    <DatePicker x:Name="FltrDateAt" />
+                    <TextBlock Text=" ... " VerticalAlignment="Center" />
+                    <DatePicker x:Name="FltrDateTo" />
+                </StackPanel>
+                <WrapPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="FltrBtn" Content="Применить" Margin="2" Click="FltrBtn_Click" />
+                    <Button x:Name="FltrCancel" Content="Сбросить" Margin="2" Click="FltrCancel_Click" />
+                </WrapPanel>
+            </Grid>
+            <DataGrid DockPanel.Dock="Bottom" AutoGenerateColumns="False" x:Name="GrdItems" IsReadOnly="True" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Код" />
+                    <DataGridTextColumn Binding="{Binding Date, StringFormat={}{0:dd.MM.yyyy}}" Header="Дата" />
+                    <DataGridTextColumn Binding="{Binding StoreAt.Name}" Header="Склад отправитель" />
+                    <DataGridTextColumn Binding="{Binding StoreTo.Name}" Header="Склад получатель" />
+                    <DataGridTextColumn Binding="{Binding Product.Name}" Header="Товар" Width="*" />
+                    <DataGridTextColumn Binding="{Binding Quantity}" Header="Количество" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
+    </Grid>
+</Page>

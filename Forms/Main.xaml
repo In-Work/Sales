@@ -1,0 +1,61 @@
+﻿<Window x:Class="Sales.Forms.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Sales.Forms"
+        mc:Ignorable="d"
+        Title="Учет и реализация промышленных нагревателей" Height="520" MinHeight="520" Width="800" MinWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" BorderThickness="0,0,0,2" BorderBrush="White">
+            <MenuItem Padding="5" x:Name="MenuReference">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image MaxHeight="32" Source="pack://siteoforigin:,,,/Resources/folder.png" />
+                        <TextBlock Text="Справочники" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Header="Номенклатура" x:Name="MenuNomenclature" Click="MenuNomenclature_Click" />
+                <MenuItem Header="Склады" x:Name="MenuStores" Click="MenuStores_Click" />
+                <MenuItem Header="Контрагенты" x:Name="MenuPartners" Click="MenuPartners_Click" />
+                <MenuItem Header="Единицы измерения" x:Name="MenuMeasures" Click="MenuMeasures_Click" />
+                <MenuItem Header="Пользователи" x:Name="MenuUsers" Click="MenuUsers_Click" />
+            </MenuItem>
+            <MenuItem Padding="5" x:Name="MenuDocuments">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image MaxHeight="32" Source="pack://siteoforigin:,,,/Resources/file.png" />
+                        <TextBlock Text="Документы" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Header="Продажи" x:Name="MenuSale" Click="MenuSale_Click" />
+                <MenuItem Header="Закупки" x:Name="MenuPurchase" Click="MenuPurchase_Click" />
+                <MenuItem Header="Перемещения" x:Name="MenuTransfer" Click="MenuTransfer_Click" />
+                <MenuItem Header="Цены" x:Name="MenuPrice" Click="MenuPrice_Click" />
+            </MenuItem>
+            <MenuItem Padding="5" x:Name="MenuReport">
+                <MenuItem.Header>
+                    <StackPanel Orientation="Vertical">
+                        <Image MaxHeight="32" Source="pack://siteoforigin:,,,/Resources/barchart.png" />
+                        <TextBlock Text="Отчеты" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem Header="Товары на складах" x:Name="MenuReportStores" Click="MenuReportStores_Click" />
+                <MenuItem Header="Прайс-лист" x:Name="MenuReportPrice" Click="MenuReportPrice_Click" />
+                <MenuItem Header="Продажи" x:Name="MenuReportSales" Click="MenuReportSales_Click" />
+                <MenuItem Header="Закупки" x:Name="MenuReportPurchases" Click="MenuReportPurchases_Click" />
+            </MenuItem>
+        </Menu>
+        <Frame Grid.Row="1" x:Name="FrameMain" NavigationUIVisibility="Hidden" Navigated="FrameMain_Navigated" />
+        <StatusBar Grid.Row="2" MinHeight="16">
+            <TextBlock x:Name="LblUser" Text="Пользователь" />
+            <TextBlock Text=":" />
+            <TextBlock x:Name="LblStatus" Text="Номенклатура" />
+        </StatusBar>
+    </Grid>
+</Window>
